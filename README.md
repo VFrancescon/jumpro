@@ -9,9 +9,16 @@ Prototype will be fabricated once the whole project works in simulations.
 
 ## Specs
 
-* C++ only.
+* C++ only for control.
+* Python for launch files and Gazebo simulations.
 * ROS2 Foxy.
 * Gazebo for simulations.
 * URDF for modelling.
 
+## Packages
+
+* jumpro_description: Xacro files and some preliminary launch files for testing and simulation.
+
+
+### Acknowledgement
 Author: Vittorio Francescon

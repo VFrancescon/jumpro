@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(jumpro)
+project(jumpro_description)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -17,17 +17,11 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
-
-add_executable(jumper src/jumper.cpp)
-target_include_directories(jumper PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-
-install(TARGETS jumper
-  DESTINATION lib/${PROJECT_NAME})
+find_package(ament_cmake REQUIRED)
+find_package(urdf REQUIRED)
+find_package(xacro REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -39,5 +33,21 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+install(
+  DIRECTORY
+    launch
+    robot
+    worlds
+  DESTINATION
+    share/${PROJECT_NAME}/
+)
+
+install(
+  PROGRAMS
+  launch/jumpro_spawn.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 
 ament_package()
